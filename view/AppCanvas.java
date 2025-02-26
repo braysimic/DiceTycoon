@@ -10,7 +10,7 @@ public class AppCanvas extends JPanel{
 	// public static final int HEIGHT = 500;
 	
 	public AppCanvas() {
-		setPreferredSize(new Dimension(400, 500));
+		setPreferredSize(new Dimension(300, 300));
 	}
 
 }
