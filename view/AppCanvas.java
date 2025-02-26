@@ -1,16 +1,24 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 public class AppCanvas extends JPanel{
 
-	// public static final int WIDTH = 300;
-	// public static final int HEIGHT = 500;
+	public static final int WIDTH = 300;
+	public static final int HEIGHT = 300;
 	
 	public AppCanvas() {
-		setPreferredSize(new Dimension(300, 300));
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
+		
 	}
 
 }

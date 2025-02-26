@@ -15,7 +15,7 @@ public class App {
 		// win.init();
 		win.setTitle("Betting Dice Roll Game");
 		win.init();
-		win.setLocation(200, 200);
+		win.setLocation(300, 200);
 		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		win.pack();
 		win.setVisible(true);
