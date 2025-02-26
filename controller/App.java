@@ -8,7 +8,7 @@ import view.AppWindow;
 public class App {
 	
 	public static final AppWindow win = new AppWindow();
-	public static final DiceRollGame game = new DiceRollGame();
+	public static final DiceRollGame diceRollGame = new DiceRollGame();
 
 	public static void main(String[] args) {
 		
