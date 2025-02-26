@@ -31,18 +31,19 @@ public class AppWindow extends JFrame{
 
 	public static final String checkButtonActionShowKey = "Show Key";
 
+	public static final String[] bettingAmounts = {"Choose Amount","$10", "$20" , "$30"};
+
+
 
 
 	private AppCanvas canvas = new AppCanvas();
 	
 	public void init() {
 
-		// setTitle("Betting Dice Roll Game");
+
 
 		var cp = getContentPane();
-
-		var canvas = new AppCanvas();
-		cp.add(canvas, BorderLayout.CENTER);
+		cp.add(this.canvas, BorderLayout.CENTER);
 
 		JPanel southPanel = new JPanel();
 		cp.add(southPanel, BorderLayout.SOUTH);
@@ -52,9 +53,11 @@ public class AppWindow extends JFrame{
 		JPanel OddEvenPanel = new JPanel();
 		JRadioButton oddButton = new JRadioButton(radioButtonActionOdd);
 		JRadioButton evenButton = new JRadioButton(radioButtonActionEven);
+		JComboBox<String> oddEvenBetAmount = new JComboBox<>(bettingAmounts);
 		// JComboBox chooseAmountButton = new JComboBox(comboBoxActionAmount1);
 		OddEvenPanel.add(oddButton);
 		OddEvenPanel.add(evenButton);
+		OddEvenPanel.add(oddEvenBetAmount);
 		southPanel.add(OddEvenPanel);
 		OddEvenPanel.setBorder(new TitledBorder("Bet on Odd/Even (2x Winnings)"));
 
@@ -62,9 +65,11 @@ public class AppWindow extends JFrame{
 		JRadioButton oneToTwoButton = new JRadioButton(radioButtonActionOneTwo);
 		JRadioButton threeToFourButton = new JRadioButton(radioButtonActionThreeFour);
 		JRadioButton fiveToSixButton = new JRadioButton(radioButtonActionFiveSix);
+		JComboBox<String> numberRangeBetAmount = new JComboBox<>(bettingAmounts);
 		RangePanel.add(oneToTwoButton);
 		RangePanel.add(threeToFourButton);
 		RangePanel.add(fiveToSixButton);
+		RangePanel.add(numberRangeBetAmount);
 		southPanel.add(RangePanel);
 		RangePanel.setBorder(new TitledBorder("Bet on Number Range (3x Winnings)"));
 
