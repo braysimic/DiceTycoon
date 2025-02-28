@@ -24,18 +24,18 @@ public class DiceRollGame {
 
 	public void start() {
 		key = generateNewKey();
-				balance = 100;
-				state = GameState.PLAYING;
-			}
-	
+		balance = 100;
+		state = GameState.PLAYING;
+	}
+
 	private int generateNewKey() {
-		return(int) (Math.random() * MAX_KEY) + 1;
-				
+		return (int) (Math.random() * MAX_KEY) + 1;
+
 	}
 
 	public void placeOddEvenBet(int amount) {
 		betOddEvenAmount = amount;
-		if(strategy1 == OddEvenStrategy.Odd && key % 2 != 0) {
+		if (strategy1 == OddEvenStrategy.Odd && key % 2 != 0) {
 			balance += amount;
 		} else if (strategy1 == OddEvenStrategy.Even && key % 2 == 0) {
 			balance += amount;
@@ -47,8 +47,8 @@ public class DiceRollGame {
 	public void placeRangeBet(int amount) {
 		betRangeAmount = amount;
 		if ((strategy2 == NumberRangeStrategy.onetotwo && key >= 1 && key <= 2) ||
-		(strategy2 == NumberRangeStrategy.threetofour && key >= 3 && key <= 4) ||
-		(strategy2 == NumberRangeStrategy.fivetosix && key >= 5 && key <= 6)) {
+				(strategy2 == NumberRangeStrategy.threetofour && key >= 3 && key <= 4) ||
+				(strategy2 == NumberRangeStrategy.fivetosix && key >= 5 && key <= 6)) {
 
 			balance += amount;
 		} else {
@@ -62,7 +62,7 @@ public class DiceRollGame {
 	}
 
 	public int getKey() {
-		
+
 		if (showKeyOn) {
 			return key;
 		} else {
@@ -120,10 +120,5 @@ public class DiceRollGame {
 		this.strategy1 = strategy1;
 		this.strategy2 = strategy2;
 	}
-	
-		
+
 }
-	
-
-
-
