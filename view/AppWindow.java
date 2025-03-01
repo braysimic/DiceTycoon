@@ -156,7 +156,8 @@ public class AppWindow extends JFrame{
 
 	public void updateWindow() {
 		switch (App.game.getState()) {
-			case INIT: 
+			case INIT:
+			case OVER:
 				newGameButton.setEnabled(true);
 				playButton.setEnabled(false);
 				oddButton.setEnabled(false);
