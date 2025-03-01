@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 import controller.App;
 import model.DiceRollGame;
-import model.GameState;
 
 public class AppCanvas extends JPanel {
 
@@ -55,8 +54,13 @@ public class AppCanvas extends JPanel {
 				drawPlayingCanvas(g2);
 				break;
 			case OVER:
+				drawOverCanvas(g2);
 				break;
 		}
+	}
+
+	private void drawOverCanvas(Graphics2D g2) {
+ ///next part to do!!!
 	}
 
 	private void drawPlayingCanvas(Graphics2D g2) {

@@ -5,8 +5,6 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JCheckBox;
 
-import model.DiceRollGame;
-
 public class ShowKeyButtonListener implements ItemListener{
 
 	@Override

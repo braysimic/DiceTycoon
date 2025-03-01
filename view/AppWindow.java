@@ -2,9 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-// import java.awt.font.NumericShaper.Range;
-import java.awt.event.ActionListener;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -24,8 +21,6 @@ import controller.OddEvenAmountSelectionListener;
 import controller.OddEvenStrategySelectionListener;
 import controller.PlayButtonListener;
 import controller.ShowKeyButtonListener;
-// import controller.PlayButtonButtonListener;
-import model.GameState;
 import model.NumberRangeStrategy;
 import model.OddEvenStrategy;
 
@@ -86,7 +81,7 @@ public class AppWindow extends JFrame{
 		OddEvenPanel.add(oddButton);
 		OddEvenPanel.add(evenButton);
 		OddEvenPanel.add(oddEvenBetAmount);
-		oddEvenBetAmount.addActionListener(new OddEvenAmountSelectionListener(oddEvenBetAmount));
+		oddEvenBetAmount.addActionListener(new OddEvenAmountSelectionListener());
 
 		OddEvenStrategySelectionListener oddEvenStrategySelectionListener = new OddEvenStrategySelectionListener();
 		oddButton.addActionListener(oddEvenStrategySelectionListener);
@@ -127,7 +122,7 @@ public class AppWindow extends JFrame{
         rangeGroup.add(threeToFourButton);
         rangeGroup.add(fiveToSixButton);
 		RangePanel.setBorder(new TitledBorder("Bet on Number Range (3x Winnings)"));
-		numberRangeBetAmount.addActionListener(new NumberRangeAmountSelectionListener(numberRangeBetAmount));
+		numberRangeBetAmount.addActionListener(new NumberRangeAmountSelectionListener());
 
 
 		JPanel PlayNewGamePanel = new JPanel();
