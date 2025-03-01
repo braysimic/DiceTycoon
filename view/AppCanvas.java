@@ -32,12 +32,6 @@ public class AppCanvas extends JPanel {
 		g2.drawString(
 				String.format("Balance = $%d", diceRollGame.getBalance()),
 				245, 15);
-
-		g2.setColor(initialMessageColor);
-		g2.setFont(initialMessageFont);
-		g2.drawString(("Welcome to the Dice Roll Game!"), 30, 100);
-		g2.drawString(("Press <New Game> to Start"), 30, 130);
-
 	}
 
 	@Override
@@ -47,29 +41,50 @@ public class AppCanvas extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		drawTextStrings(g2);
 
-		// g2.setColor(Color.WHITE);
-		// g2.fillRect(0,0,WIDTH, HEIGHT);
-		// drawTextStrings(g2);
+		if (App.game.isShowKeyOn()) {
 
-		// DiceRollGame diceRollGame = App.game;
-		// if (diceRollGame.getState() == GameState.PLAYING) {
+			var keyString = String.format("Key: %d", App.game.getKey());
+			g2.drawString(keyString, 10, 20);
+		}
 
-		// 	g2.setColor(Color.BLACK);
-		// 	g2.fillOval(WIDTH / 2 - 50, HEIGHT /2 - 50, 100, 100);
-		// 	g2.setColor(Color.WHITE);
-		// 	g2.setFont(new Font("Arial", Font.BOLD, 30));
-		// 	g2.drawString("?", WIDTH / 2 - 10, HEIGHT / 2 + 10);
-		// }
+		switch (App.game.getState()) {
+			case INIT:
+				drawInitCanvas(g2);
+				break;
+			case PLAYING:
+				drawPlayingCanvas(g2);
+				break;
+			case OVER:
+				break;
+		}
+	}
 
-		// if (diceRollGame.getState() == GameState.PLAYING && diceRollGame.getKey() != -1) {
+	private void drawPlayingCanvas(Graphics2D g2) {
 
-		// 	g2.setColor(Color.BLACK);
-		// 	g2.setFont(new Font("Arial", Font.BOLD, 20));
-		// 	g2.drawString("Key: " + diceRollGame.getKey(), WIDTH / 2 - 30, HEIGHT / 2 + 60);
-		// }
+		g2.setFont(new Font("Courier New", Font.BOLD, 16));
+		DiceRollGame game = App.game;
+
+		if(!game.isBetPlaced()) {
+			g2.setColor(Color.BLACK);
+			g2.fillOval(120,80,150,150);
+			g2.setColor(Color.WHITE);
+
+			g2.setFont(new Font("Arial", Font.PLAIN, 50));
+			g2.drawString("?", 175, 175);
+			return;
+		}
+
+	} 
 
 
+	private void drawInitCanvas(Graphics2D g2) {
 
+		g2.setFont(new Font("Courier New", Font.BOLD, 16));
+		g2.setColor(initialMessageColor);
+		var message1 = "Welcome to the Dice Roll Game!";
+		var message2 = "Press <New Game> Button to start";
+		g2.drawString(message1, 30, 150);
+		g2.drawString(message2, 30, 130);
 	}
 
 

@@ -17,8 +17,13 @@ import javax.swing.JRadioButton;
 import javax.swing.border.TitledBorder;
 
 import controller.App;
+import controller.NewGameButtonListener;
+import controller.NumberRangeAmountSelectionListener;
 import controller.NumberRangeStrategySelectionListener;
+import controller.OddEvenAmountSelectionListener;
 import controller.OddEvenStrategySelectionListener;
+import controller.PlayButtonListener;
+import controller.ShowKeyButtonListener;
 // import controller.PlayButtonButtonListener;
 import model.GameState;
 import model.NumberRangeStrategy;
@@ -62,8 +67,6 @@ public class AppWindow extends JFrame{
 
 	public void init() {
 
-
-
 		var cp = getContentPane();
 		cp.add(this.canvas, BorderLayout.CENTER);
 
@@ -83,6 +86,8 @@ public class AppWindow extends JFrame{
 		OddEvenPanel.add(oddButton);
 		OddEvenPanel.add(evenButton);
 		OddEvenPanel.add(oddEvenBetAmount);
+		oddEvenBetAmount.addActionListener(new OddEvenAmountSelectionListener(oddEvenBetAmount));
+
 		OddEvenStrategySelectionListener oddEvenStrategySelectionListener = new OddEvenStrategySelectionListener();
 		oddButton.addActionListener(oddEvenStrategySelectionListener);
 		evenButton.addActionListener(oddEvenStrategySelectionListener);
@@ -90,8 +95,8 @@ public class AppWindow extends JFrame{
 		ButtonGroup oddEvenGroup = new ButtonGroup();
 		oddEvenGroup.add(oddButton);
 		oddEvenGroup.add(evenButton);
-
 		southPanel.add(OddEvenPanel);
+
 		OddEvenPanel.setBorder(new TitledBorder("Bet on Odd/Even (2x Winnings)"));
 
 		JPanel RangePanel = new JPanel();
@@ -110,17 +115,19 @@ public class AppWindow extends JFrame{
 		RangePanel.add(threeToFourButton);
 		RangePanel.add(fiveToSixButton);
 		RangePanel.add(numberRangeBetAmount);
+		// numberRangeBetAmount.addActionListener(new NumberRangeAmountSelectionListener(numberRangeBetAmount));
 		southPanel.add(RangePanel);
 		NumberRangeStrategySelectionListener numberRangeStrategySelectionListener = new NumberRangeStrategySelectionListener();
-		oneToTwoButton.addActionListener(oddEvenStrategySelectionListener);
-		threeToFourButton.addActionListener(oddEvenStrategySelectionListener);
-		fiveToSixButton.addActionListener(oddEvenStrategySelectionListener);
+		oneToTwoButton.addActionListener(numberRangeStrategySelectionListener);
+		threeToFourButton.addActionListener(numberRangeStrategySelectionListener);
+		fiveToSixButton.addActionListener(numberRangeStrategySelectionListener);
 
 		ButtonGroup rangeGroup = new ButtonGroup();
         rangeGroup.add(oneToTwoButton);
         rangeGroup.add(threeToFourButton);
         rangeGroup.add(fiveToSixButton);
 		RangePanel.setBorder(new TitledBorder("Bet on Number Range (3x Winnings)"));
+		numberRangeBetAmount.addActionListener(new NumberRangeAmountSelectionListener(numberRangeBetAmount));
 
 
 		JPanel PlayNewGamePanel = new JPanel();
@@ -128,18 +135,55 @@ public class AppWindow extends JFrame{
 		newGameButton = new JButton(buttonActionNewGame);
 		quitButton = new JButton(buttonActionQuit);
 		PlayNewGamePanel.add(playButton);
+		playButton.addActionListener(new PlayButtonListener());
 		PlayNewGamePanel.add(newGameButton);
+		newGameButton.addActionListener(new NewGameButtonListener());
 		PlayNewGamePanel.add(quitButton);
 		quitButton.addActionListener(e -> System.exit(0));
 		southPanel.add(PlayNewGamePanel);
 		PlayNewGamePanel.setBorder(new TitledBorder("Play / New Game"));
 
 		JPanel ShowKeyPanel = new JPanel();
-		JCheckBox showKeyButton = new JCheckBox(checkButtonActionShowKey);
+		showKeyButton = new JCheckBox(checkButtonActionShowKey);
 		ShowKeyPanel.add(showKeyButton);
 		southPanel.add(ShowKeyPanel);
 		ShowKeyPanel.setBorder(new TitledBorder("Show Key"));
+		showKeyButton.addItemListener(new ShowKeyButtonListener());
+
+		updateWindow();
+
+	}
+
+	public void updateWindow() {
+		switch (App.game.getState()) {
+			case INIT: 
+				newGameButton.setEnabled(true);
+				playButton.setEnabled(false);
+				oddButton.setEnabled(false);
+				evenButton.setEnabled(false);
+				oneToTwoButton.setEnabled(false);
+				threeToFourButton.setEnabled(false);
+				fiveToSixButton.setEnabled(false);
+				showKeyButton.setEnabled(false);
+				numberRangeBetAmount.setEnabled(false);
+				oddEvenBetAmount.setEnabled(false);
+				break;
+			case PLAYING:
+				newGameButton.setEnabled(false);
+				playButton.setEnabled(true);
+				oddButton.setEnabled(true);
+				evenButton.setEnabled(true);
+				oneToTwoButton.setEnabled(true);
+				threeToFourButton.setEnabled(true);
+				fiveToSixButton.setEnabled(true);
+				showKeyButton.setEnabled(true);
+				numberRangeBetAmount.setEnabled(true);
+				oddEvenBetAmount.setEnabled(true);
+				break;
 
 
+		}
+
+		canvas.repaint();
 	}
 }

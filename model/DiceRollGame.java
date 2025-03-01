@@ -12,6 +12,7 @@ public class DiceRollGame {
 	private GameState state;
 	private OddEvenStrategy strategy1;
 	private NumberRangeStrategy strategy2;
+	private boolean betPlaced = false;
 
 	public DiceRollGame() {
 		key = -1;
@@ -22,10 +23,46 @@ public class DiceRollGame {
 		strategy2 = NumberRangeStrategy.onetotwo;
 	}
 
+	public void rollDice() {
+		key = generateNewKey();
+		state = GameState.PLAYING;
+	}
+
+	public void calculateWinnings() {
+		if (!betPlaced) {
+			return;
+		}
+
+		int winnings = 0;
+
+		if(betOddEvenAmount > 0) {
+			if((strategy1 == OddEvenStrategy.Odd && key % 2 != 0) ||
+			(strategy1 == OddEvenStrategy.Even && key % 2 == 0)) {
+				winnings += betOddEvenAmount * 2;
+			} else {
+				winnings -= betOddEvenAmount;
+			}
+		}
+
+		if (betRangeAmount > 0) {
+			if ((strategy2 == NumberRangeStrategy.onetotwo && key >= 1 && key <= 2) ||
+			(strategy2 == NumberRangeStrategy.threetofour && key >= 3 && key <= 4) ||
+			(strategy2 == NumberRangeStrategy.fivetosix && key >= 5 && key <= 6)) {
+				winnings += betRangeAmount * 3;
+			} else {
+				winnings -= betRangeAmount;
+			}
+		}
+
+		balance += winnings;
+		betPlaced = false;
+	}
+
 	public void start() {
 		key = generateNewKey();
 		balance = 100;
 		state = GameState.PLAYING;
+		betPlaced = false;
 	}
 
 	private int generateNewKey() {
@@ -35,30 +72,17 @@ public class DiceRollGame {
 
 	public void placeOddEvenBet(int amount) {
 		betOddEvenAmount = amount;
-		if (strategy1 == OddEvenStrategy.Odd && key % 2 != 0) {
-			balance += amount;
-		} else if (strategy1 == OddEvenStrategy.Even && key % 2 == 0) {
-			balance += amount;
-		} else {
-			balance -= amount;
-		}
+		betPlaced = true;
 	}
 
 	public void placeRangeBet(int amount) {
 		betRangeAmount = amount;
-		if ((strategy2 == NumberRangeStrategy.onetotwo && key >= 1 && key <= 2) ||
-				(strategy2 == NumberRangeStrategy.threetofour && key >= 3 && key <= 4) ||
-				(strategy2 == NumberRangeStrategy.fivetosix && key >= 5 && key <= 6)) {
-
-			balance += amount;
-		} else {
-			balance -= amount;
-		}
+		betPlaced = true;
 	}
 
-	public void checkKey() {
+	public void setShowKeyOn(boolean showKeyOn) {
 
-		showKeyOn = true;
+		this.showKeyOn = showKeyOn;
 	}
 
 	public int getKey() {
@@ -68,6 +92,10 @@ public class DiceRollGame {
 		} else {
 			return -1;
 		}
+	}
+
+	public boolean isShowKeyOn() {
+		return showKeyOn;
 	}
 
 	public int getBalance() {
@@ -100,7 +128,7 @@ public class DiceRollGame {
 		return betRangeAmount;
 	}
 
-	public void setbetOddEvenAmount(int amount) {
+	public void setBetOddEvenAmount(int amount) {
 
 		this.betOddEvenAmount = amount;
 	}
@@ -119,6 +147,11 @@ public class DiceRollGame {
 
 		this.strategy1 = strategy1;
 		this.strategy2 = strategy2;
+	}
+
+	public boolean isBetPlaced() {
+		
+		return betPlaced;
 	}
 
 }
