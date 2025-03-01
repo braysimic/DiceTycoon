@@ -81,11 +81,10 @@ public class AppWindow extends JFrame{
 		OddEvenPanel.add(oddButton);
 		OddEvenPanel.add(evenButton);
 		OddEvenPanel.add(oddEvenBetAmount);
-		oddEvenBetAmount.addActionListener(new OddEvenAmountSelectionListener());
 
-		OddEvenStrategySelectionListener oddEvenStrategySelectionListener = new OddEvenStrategySelectionListener();
-		oddButton.addActionListener(oddEvenStrategySelectionListener);
-		evenButton.addActionListener(oddEvenStrategySelectionListener);
+		oddEvenBetAmount.addActionListener(new OddEvenAmountSelectionListener());
+		oddButton.addActionListener(new OddEvenStrategySelectionListener(OddEvenStrategy.Odd));
+		evenButton.addActionListener(new OddEvenStrategySelectionListener(OddEvenStrategy.Even));
 
 		ButtonGroup oddEvenGroup = new ButtonGroup();
 		oddEvenGroup.add(oddButton);
@@ -112,10 +111,10 @@ public class AppWindow extends JFrame{
 		RangePanel.add(numberRangeBetAmount);
 		// numberRangeBetAmount.addActionListener(new NumberRangeAmountSelectionListener(numberRangeBetAmount));
 		southPanel.add(RangePanel);
-		NumberRangeStrategySelectionListener numberRangeStrategySelectionListener = new NumberRangeStrategySelectionListener();
-		oneToTwoButton.addActionListener(numberRangeStrategySelectionListener);
-		threeToFourButton.addActionListener(numberRangeStrategySelectionListener);
-		fiveToSixButton.addActionListener(numberRangeStrategySelectionListener);
+	
+		oneToTwoButton.addActionListener(new NumberRangeStrategySelectionListener(NumberRangeStrategy.onetotwo));
+		threeToFourButton.addActionListener(new NumberRangeStrategySelectionListener(NumberRangeStrategy.threetofour));
+		fiveToSixButton.addActionListener(new NumberRangeStrategySelectionListener(NumberRangeStrategy.fivetosix));
 
 		ButtonGroup rangeGroup = new ButtonGroup();
         rangeGroup.add(oneToTwoButton);
