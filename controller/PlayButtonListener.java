@@ -12,18 +12,14 @@ public class PlayButtonListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		DiceRollGame game = App.game;
+		// GameWindow window = App.win;
 
-		if (!game.isBetPlaced()) {
-			System.out.println("Place you bets first");
-			return;
-		}
-
-		game.rollDice();
-		game.calculateWinnings();
-
-		game.setState(GameState.OVER);
-
-		App.win.updateWindow();
+		if (game.getState() == GameState.PLAYING) {
+            // game.rollDice(); // Roll the dice
+            game.calculateWinnings(); // Calculate winnings
+            game.setState(GameState.OVER); // End the game
+            App.win.updateWindow(); // Refresh the UI
+        }
 
 	}
 }

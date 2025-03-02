@@ -56,6 +56,8 @@ public class DiceRollGame {
 
 		balance += winnings;
 		betPlaced = false;
+		betOddEvenAmount = 0;
+		betRangeAmount = 0;
 	}
 
 	public void start() {
