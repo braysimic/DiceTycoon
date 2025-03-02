@@ -63,63 +63,59 @@ public class AppCanvas extends JPanel {
 
 	private void drawOverCanvas(Graphics2D g2) {
 
-	g2.setFont(new Font("Courier New", Font.BOLD, 16));
-    DiceRollGame game = App.game;
-    int y = 50; // Starting Y position for the messages
+		g2.setFont(new Font("Courier New", Font.BOLD, 16));
+		DiceRollGame game = App.game;
 
-	g2.drawString("Game Results:", 50, y-10);
+		if ((game.getStrategy1() == OddEvenStrategy.Odd && game.getKey() % 2 != 0) ||
+				(game.getStrategy1() == OddEvenStrategy.Even && game.getKey() % 2 == 0)) {
+			g2.setColor(Color.GREEN);
+			g2.drawString(String.format("Bet on odd/even won: +$%d", game.getbetOddEvenAmount() * 2), 50, 245);
+		} else {
+			g2.setColor(Color.RED);
+			g2.drawString(String.format("Bet on odd/even lost: -$%d", game.getbetOddEvenAmount()), 50, 245);
+		}
 
-    // Display odd/even result
-    if (game.getbetOddEvenAmount() > 0) {
-        if ((game.getStrategy1() == OddEvenStrategy.Odd && game.getKey() % 2 != 0) ||
-            (game.getStrategy1() == OddEvenStrategy.Even && game.getKey() % 2 == 0)) {
-            g2.setColor(Color.GREEN);
-            g2.drawString(String.format("Bet on odd/even won: +$%d", game.getbetOddEvenAmount() * 2), 50, y);
-        } else {
-            g2.setColor(Color.RED);
-            g2.drawString(String.format("Bet on odd/even lost: -$%d", game.getbetOddEvenAmount()), 50, y);
-        }
-        y += 20; // Move down for the next message
-    }
+		if ((game.getStrategy2() == NumberRangeStrategy.onetotwo && game.getKey() >= 1 && game.getKey() <= 2) ||
+				(game.getStrategy2() == NumberRangeStrategy.threetofour && game.getKey() >= 3 && game.getKey() <= 4) ||
+				(game.getStrategy2() == NumberRangeStrategy.fivetosix && game.getKey() >= 5 && game.getKey() <= 6)) {
+			g2.setColor(Color.GREEN);
+			g2.drawString(String.format("Bet on range won: +$%d", game.getbetRangeAmount() * 3), 50, 270);
+		} else {
+			g2.setColor(Color.RED);
+			g2.drawString(String.format("Bet on range lost: -$%d", game.getbetRangeAmount()), 50, 270);
+		}
 
-    // Display range result
-    if (game.getbetRangeAmount() > 0) {
-        if ((game.getStrategy2() == NumberRangeStrategy.onetotwo && game.getKey() >= 1 && game.getKey() <= 2) ||
-            (game.getStrategy2() == NumberRangeStrategy.threetofour && game.getKey() >= 3 && game.getKey() <= 4) ||
-            (game.getStrategy2() == NumberRangeStrategy.fivetosix && game.getKey() >= 5 && game.getKey() <= 6)) {
-            g2.setColor(Color.GREEN);
-            g2.drawString(String.format("Bet on range won: +$%d", game.getbetRangeAmount() * 3), 50, y);
-        } else {
-            g2.setColor(Color.RED);
-            g2.drawString(String.format("Bet on range lost: -$%d", game.getbetRangeAmount()), 50, y);
-        }
-        y += 20; // Move down for the next message
-    }
+		g2.setColor(Color.YELLOW);
+		g2.fillOval(95, 60, 175, 175);
+		g2.setColor(Color.BLACK);
 
-    // Display the updated balance
-    g2.setColor(Color.BLACK);
-    g2.drawString(String.format("Current Balance: $%d", game.getBalance()), 50, y + 20);
+		String keyString = String.valueOf(game.getKey()); // Convert key to string
+		g2.setFont(new Font("SansSerif", Font.BOLD, 75)); // Set font for the key
+		g2.drawString(keyString, 155, 170);
+
+		// g2.setFont(new Font("Arial", Font.PLAIN, 50));
+		// g2.drawString(getKey(), 175, 175);
+
+		// Display the updated balance
+		// g2.setColor(Color.BLACK);
+		// g2.drawString(String.format("Current Balance: $%d", game.getBalance()), 50, y
+		// + 20);
 	}
-
-		
-	
 
 	private void drawPlayingCanvas(Graphics2D g2) {
 
 		g2.setFont(new Font("Courier New", Font.BOLD, 16));
 		DiceRollGame game = App.game;
 
-			g2.setColor(Color.BLACK);
-			g2.fillOval(120,80,150,150);
-			g2.setColor(Color.WHITE);
+		g2.setColor(Color.YELLOW);
+		g2.fillOval(95, 60, 175, 175);
+		g2.setColor(Color.BLACK);
 
-			g2.setFont(new Font("Arial", Font.PLAIN, 50));
-			g2.drawString("?", 175, 175);
-			return;
-		
+		g2.setFont(new Font("SansSerif", Font.BOLD, 75));
+		g2.drawString("?", 165, 170);
+		return;
 
-	} 
-
+	}
 
 	private void drawInitCanvas(Graphics2D g2) {
 
@@ -130,6 +126,5 @@ public class AppCanvas extends JPanel {
 		g2.drawString(message1, 30, 150);
 		g2.drawString(message2, 30, 130);
 	}
-
 
 }
