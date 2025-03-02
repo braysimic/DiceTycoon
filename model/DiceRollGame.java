@@ -32,38 +32,36 @@ public class DiceRollGame {
 		if (!betPlaced) {
 			return;
 		}
-
+	
 		int winnings = 0;
-
-		if(betOddEvenAmount > 0) {
-			if((strategy1 == OddEvenStrategy.Odd && key % 2 != 0) ||
+	
+		// Calculate winnings for odd/even bet
+		if ((strategy1 == OddEvenStrategy.Odd && key % 2 != 0) ||
 			(strategy1 == OddEvenStrategy.Even && key % 2 == 0)) {
-				winnings += betOddEvenAmount * 2;
-			} else {
-				winnings -= betOddEvenAmount;
-			}
+			winnings += betOddEvenAmount * 2; // Win 2x the bet amount
+		} else {
+			winnings -= betOddEvenAmount; // Lose the bet amount
 		}
-
-		if (betRangeAmount > 0) {
-			if ((strategy2 == NumberRangeStrategy.onetotwo && key >= 1 && key <= 2) ||
+	
+		// Calculate winnings for range bet
+		if ((strategy2 == NumberRangeStrategy.onetotwo && key >= 1 && key <= 2) ||
 			(strategy2 == NumberRangeStrategy.threetofour && key >= 3 && key <= 4) ||
 			(strategy2 == NumberRangeStrategy.fivetosix && key >= 5 && key <= 6)) {
-				winnings += betRangeAmount * 3;
-			} else {
-				winnings -= betRangeAmount;
-			}
+			winnings += betRangeAmount * 3; // Win 3x the bet amount
+		} else {
+			winnings -= betRangeAmount; // Lose the bet amount
 		}
-
-		balance += winnings;
+	
+		balance += winnings; // Update the balance
 		betPlaced = false;
-		betOddEvenAmount = 0;
-		betRangeAmount = 0;
 	}
 
 	public void start() {
 		key = generateNewKey();
 		state = GameState.PLAYING;
 		betPlaced = false;
+		betOddEvenAmount = 0;
+		betRangeAmount = 0;
 	}
 
 	private int generateNewKey() {
@@ -88,11 +86,11 @@ public class DiceRollGame {
 
 	public int getKey() {
 
-		if (showKeyOn) {
+		// if (showKeyOn) {
 			return key;
-		} else {
-			return -1;
-		}
+		// } else {
+		// 	return -1;
+		// }
 	}
 
 	public boolean isShowKeyOn() {

@@ -15,10 +15,10 @@ public class PlayButtonListener implements ActionListener{
 		// GameWindow window = App.win;
 
 		if (game.getState() == GameState.PLAYING) {
-            // game.rollDice(); // Roll the dice
-            game.calculateWinnings(); // Calculate winnings
-            game.setState(GameState.OVER); // End the game
-            App.win.updateWindow(); // Refresh the UI
+            
+            game.setState(GameState.OVER); 
+			game.calculateWinnings();
+            App.win.updateWindow(); 
         }
 
 	}

@@ -75,6 +75,7 @@ public class AppCanvas extends JPanel {
 			g2.drawString(String.format("Bet on odd/even lost: -$%d", game.getbetOddEvenAmount()), 50, 245);
 		}
 
+	
 		if ((game.getStrategy2() == NumberRangeStrategy.onetotwo && game.getKey() >= 1 && game.getKey() <= 2) ||
 				(game.getStrategy2() == NumberRangeStrategy.threetofour && game.getKey() >= 3 && game.getKey() <= 4) ||
 				(game.getStrategy2() == NumberRangeStrategy.fivetosix && game.getKey() >= 5 && game.getKey() <= 6)) {
@@ -84,6 +85,7 @@ public class AppCanvas extends JPanel {
 			g2.setColor(Color.RED);
 			g2.drawString(String.format("Bet on range lost: -$%d", game.getbetRangeAmount()), 50, 270);
 		}
+	
 
 		g2.setColor(Color.YELLOW);
 		g2.fillOval(95, 60, 175, 175);
