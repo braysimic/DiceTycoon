@@ -67,6 +67,8 @@ public class AppCanvas extends JPanel {
     DiceRollGame game = App.game;
     int y = 50; // Starting Y position for the messages
 
+	g2.drawString("Game Results:", 50, y-10);
+
     // Display odd/even result
     if (game.getbetOddEvenAmount() > 0) {
         if ((game.getStrategy1() == OddEvenStrategy.Odd && game.getKey() % 2 != 0) ||

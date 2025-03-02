@@ -13,6 +13,7 @@ public class OddEvenAmountSelectionListener implements ActionListener{
         String selectedAmount = (String) comboBox.getSelectedItem();
         int amount = parseBetAmount(selectedAmount); // Convert "$10" to 10, etc.
         App.game.placeOddEvenBet(amount);
+        System.out.println("Odd/Even bet amount: " + amount);
     }
 
     private int parseBetAmount(String amountStr) {

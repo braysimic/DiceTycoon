@@ -62,7 +62,6 @@ public class DiceRollGame {
 
 	public void start() {
 		key = generateNewKey();
-		balance = 100;
 		state = GameState.PLAYING;
 		betPlaced = false;
 	}
