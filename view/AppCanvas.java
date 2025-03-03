@@ -66,6 +66,8 @@ public class AppCanvas extends JPanel {
 		g2.setFont(new Font("Courier New", Font.BOLD, 16));
 		DiceRollGame game = App.game;
 
+
+	if(game.getOddEvenWinnings() != 0) {
 		if (game.getOddEvenWinnings() > 0) {
 			g2.setColor(Color.GREEN);
 			g2.drawString(String.format("Bet on odd/even won: +$%d", game.getOddEvenWinnings()), 50, 245);
@@ -73,14 +75,23 @@ public class AppCanvas extends JPanel {
 			g2.setColor(Color.RED);
 			g2.drawString(String.format("Bet on odd/even lost: -$%d", -game.getOddEvenWinnings()), 50, 245);
 		}
+	} else {
+		g2.setColor(Color.BLACK);
+		g2.drawString("No bet on odd/even", 50, 245);
+	}
 
+	if(game.getRangeWinnings() != 0) {
 		if (game.getRangeWinnings() > 0) {
 			g2.setColor(Color.GREEN);
 			g2.drawString(String.format("Bet on range won: +$%d", game.getRangeWinnings()), 50, 270);
 		} else {
 			g2.setColor(Color.RED);
 			g2.drawString(String.format("Bet on range lost: -$%d", -game.getRangeWinnings()), 50, 270);
-		}
+		} 
+	} else {
+		g2.setColor(Color.BLACK);
+		g2.drawString("No bet on range", 50, 270);
+	}
 
 		g2.setColor(Color.YELLOW);
 		g2.fillOval(95, 60, 175, 175);
@@ -111,8 +122,8 @@ public class AppCanvas extends JPanel {
 
 		g2.setFont(new Font("Courier New", Font.BOLD, 16));
 		g2.setColor(initialMessageColor);
-		var message1 = "Welcome to the Dice Roll Game!";
-		var message2 = "Press <New Game> Button to start";
+		var message1 = "Press <New Game> Button to start";
+		var message2 = "Welcome to the Dice Roll Game!";
 		g2.drawString(message1, 30, 150);
 		g2.drawString(message2, 30, 130);
 	}
