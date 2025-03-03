@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import model.NumberRangeStrategy;
 
-public class NumberRangeStrategySelectionListener implements ActionListener{
+public class NumberRangeStrategySelectionListener implements ActionListener {
 
 	private final NumberRangeStrategy selectedRangeStrategy;
 
@@ -17,7 +17,7 @@ public class NumberRangeStrategySelectionListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		App.game.setStrategy(App.game.getStrategy1(), selectedRangeStrategy);
-		
+
 	}
-	
+
 }

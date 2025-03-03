@@ -24,7 +24,7 @@ import controller.ShowKeyButtonListener;
 import model.NumberRangeStrategy;
 import model.OddEvenStrategy;
 
-public class AppWindow extends JFrame{
+public class AppWindow extends JFrame {
 
 	public static final String radioButtonActionOdd = "Odd";
 	public static final String radioButtonActionEven = "Even";
@@ -41,13 +41,10 @@ public class AppWindow extends JFrame{
 
 	public static final String checkButtonActionShowKey = "Show Key";
 
-	public static final String[] bettingAmounts = {"Choose Amount","$10", "$20" , "$30"};
-
-
-
+	public static final String[] bettingAmounts = { "Choose Amount", "$10", "$20", "$30" };
 
 	private AppCanvas canvas = new AppCanvas();
-	
+
 	private JButton playButton;
 	private JRadioButton oddButton;
 	private JRadioButton evenButton;
@@ -68,15 +65,13 @@ public class AppWindow extends JFrame{
 		JPanel southPanel = new JPanel();
 		cp.add(southPanel, BorderLayout.SOUTH);
 
-		southPanel.setLayout(new GridLayout(4,1));
+		southPanel.setLayout(new GridLayout(4, 1));
 
 		JPanel OddEvenPanel = new JPanel();
 		oddButton = new JRadioButton(radioButtonActionOdd,
-			App.game.getStrategy1() == OddEvenStrategy.Odd
-		);
+				App.game.getStrategy1() == OddEvenStrategy.Odd);
 		evenButton = new JRadioButton(radioButtonActionEven,
-			App.game.getStrategy1() == OddEvenStrategy.Even
-		);
+				App.game.getStrategy1() == OddEvenStrategy.Even);
 		oddEvenBetAmount = new JComboBox<>(bettingAmounts);
 		OddEvenPanel.add(oddButton);
 		OddEvenPanel.add(evenButton);
@@ -94,35 +89,32 @@ public class AppWindow extends JFrame{
 		OddEvenPanel.setBorder(new TitledBorder("Bet on Odd/Even (2x Winnings)"));
 
 		JPanel RangePanel = new JPanel();
-		oneToTwoButton = new JRadioButton(radioButtonActionOneTwo, 
-			App.game.getStrategy2() == NumberRangeStrategy.onetotwo
-			);
+		oneToTwoButton = new JRadioButton(radioButtonActionOneTwo,
+				App.game.getStrategy2() == NumberRangeStrategy.onetotwo);
 		threeToFourButton = new JRadioButton(radioButtonActionThreeFour,
-			App.game.getStrategy2() == NumberRangeStrategy.threetofour
-			);
+				App.game.getStrategy2() == NumberRangeStrategy.threetofour);
 		fiveToSixButton = new JRadioButton(radioButtonActionFiveSix,
-			App.game.getStrategy2() == NumberRangeStrategy.fivetosix
-			);
+				App.game.getStrategy2() == NumberRangeStrategy.fivetosix);
 		numberRangeBetAmount = new JComboBox<>(bettingAmounts);
 
 		RangePanel.add(oneToTwoButton);
 		RangePanel.add(threeToFourButton);
 		RangePanel.add(fiveToSixButton);
 		RangePanel.add(numberRangeBetAmount);
-		// numberRangeBetAmount.addActionListener(new NumberRangeAmountSelectionListener(numberRangeBetAmount));
+		// numberRangeBetAmount.addActionListener(new
+		// NumberRangeAmountSelectionListener(numberRangeBetAmount));
 		southPanel.add(RangePanel);
-	
+
 		oneToTwoButton.addActionListener(new NumberRangeStrategySelectionListener(NumberRangeStrategy.onetotwo));
 		threeToFourButton.addActionListener(new NumberRangeStrategySelectionListener(NumberRangeStrategy.threetofour));
 		fiveToSixButton.addActionListener(new NumberRangeStrategySelectionListener(NumberRangeStrategy.fivetosix));
 
 		ButtonGroup rangeGroup = new ButtonGroup();
-        rangeGroup.add(oneToTwoButton);
-        rangeGroup.add(threeToFourButton);
-        rangeGroup.add(fiveToSixButton);
+		rangeGroup.add(oneToTwoButton);
+		rangeGroup.add(threeToFourButton);
+		rangeGroup.add(fiveToSixButton);
 		RangePanel.setBorder(new TitledBorder("Bet on Number Range (3x Winnings)"));
 		numberRangeBetAmount.addActionListener(new NumberRangeAmountSelectionListener());
-
 
 		JPanel PlayNewGamePanel = new JPanel();
 		playButton = new JButton(buttonActionPlay);
@@ -177,7 +169,6 @@ public class AppWindow extends JFrame{
 				numberRangeBetAmount.setEnabled(true);
 				oddEvenBetAmount.setEnabled(true);
 				break;
-
 
 		}
 

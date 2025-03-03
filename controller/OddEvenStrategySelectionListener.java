@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import model.OddEvenStrategy;
 
-public class OddEvenStrategySelectionListener implements ActionListener{
+public class OddEvenStrategySelectionListener implements ActionListener {
 
 	private final OddEvenStrategy selectedOddEvenStrategy;
 
@@ -15,11 +15,8 @@ public class OddEvenStrategySelectionListener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		App.game.setStrategy(selectedOddEvenStrategy, App.game.getStrategy2());
-		
-		
-		}
-	}
-	
 
+		App.game.setStrategy(selectedOddEvenStrategy, App.game.getStrategy2());
+
+	}
+}

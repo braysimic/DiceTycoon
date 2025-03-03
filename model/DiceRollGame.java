@@ -13,6 +13,8 @@ public class DiceRollGame {
 	private OddEvenStrategy strategy1;
 	private NumberRangeStrategy strategy2;
 	private boolean betPlaced = false;
+	private int oddEvenWinnings;
+	private int rangeWinnings;
 
 	public DiceRollGame() {
 		key = -1;
@@ -29,30 +31,37 @@ public class DiceRollGame {
 	}
 
 	public void calculateWinnings() {
-		if (!betPlaced) {
+		if (betOddEvenAmount == 0 && betRangeAmount == 0) {
+			System.out.println("No bets placed, skipping calculation");
 			return;
 		}
-	
-		int winnings = 0;
-	
-		// Calculate winnings for odd/even bet
+
+		int oddEvenWinnings = 0;
+		int rangeWinnings = 0;
+
 		if ((strategy1 == OddEvenStrategy.Odd && key % 2 != 0) ||
-			(strategy1 == OddEvenStrategy.Even && key % 2 == 0)) {
-			winnings += betOddEvenAmount * 2; // Win 2x the bet amount
+				(strategy1 == OddEvenStrategy.Even && key % 2 == 0)) {
+			oddEvenWinnings += betOddEvenAmount * 2;
 		} else {
-			winnings -= betOddEvenAmount; // Lose the bet amount
+			oddEvenWinnings = -betOddEvenAmount;
 		}
-	
-		// Calculate winnings for range bet
+
 		if ((strategy2 == NumberRangeStrategy.onetotwo && key >= 1 && key <= 2) ||
-			(strategy2 == NumberRangeStrategy.threetofour && key >= 3 && key <= 4) ||
-			(strategy2 == NumberRangeStrategy.fivetosix && key >= 5 && key <= 6)) {
-			winnings += betRangeAmount * 3; // Win 3x the bet amount
+				(strategy2 == NumberRangeStrategy.threetofour && key >= 3 && key <= 4) ||
+				(strategy2 == NumberRangeStrategy.fivetosix && key >= 5 && key <= 6)) {
+			rangeWinnings += betRangeAmount * 3;
 		} else {
-			winnings -= betRangeAmount; // Lose the bet amount
+			rangeWinnings = -betRangeAmount;
+
 		}
-	
-		balance += winnings; // Update the balance
+
+		balance += (oddEvenWinnings + rangeWinnings);
+
+		this.oddEvenWinnings = oddEvenWinnings;
+		this.rangeWinnings = rangeWinnings;
+
+		betOddEvenAmount = 0;
+		betRangeAmount = 0;
 		betPlaced = false;
 	}
 
@@ -70,13 +79,23 @@ public class DiceRollGame {
 	}
 
 	public void placeOddEvenBet(int amount) {
+		System.out.println("odd/even bet amount: " + amount);
 		betOddEvenAmount = amount;
 		betPlaced = true;
 	}
 
 	public void placeRangeBet(int amount) {
+		System.out.println("Range bet amount: " + amount);
 		betRangeAmount = amount;
 		betPlaced = true;
+	}
+
+	public int getOddEvenWinnings() {
+		return oddEvenWinnings;
+	}
+
+	public int getRangeWinnings() {
+		return rangeWinnings;
 	}
 
 	public void setShowKeyOn(boolean showKeyOn) {
@@ -86,11 +105,7 @@ public class DiceRollGame {
 
 	public int getKey() {
 
-		// if (showKeyOn) {
-			return key;
-		// } else {
-		// 	return -1;
-		// }
+		return key;
 	}
 
 	public boolean isShowKeyOn() {
@@ -149,7 +164,7 @@ public class DiceRollGame {
 	}
 
 	public boolean isBetPlaced() {
-		
+
 		return betPlaced;
 	}
 
