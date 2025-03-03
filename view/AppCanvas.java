@@ -98,7 +98,7 @@ public class AppCanvas extends JPanel {
 		g2.setColor(Color.BLACK);
 
 		String keyString = String.valueOf(game.getKey()); // Convert key to string
-		g2.setFont(new Font("SansSerif", Font.BOLD, 75)); // Set font for the key
+		g2.setFont(new Font("Courier New", Font.BOLD, 85)); // Set font for the key
 		g2.drawString(keyString, 155, 170);
 
 	}
@@ -112,8 +112,8 @@ public class AppCanvas extends JPanel {
 		g2.fillOval(95, 60, 175, 175);
 		g2.setColor(Color.BLACK);
 
-		g2.setFont(new Font("SansSerif", Font.BOLD, 75));
-		g2.drawString("?", 165, 170);
+		g2.setFont(new Font("Courier New", Font.BOLD, 85));
+		g2.drawString("?", 155, 170);
 		return;
 
 	}

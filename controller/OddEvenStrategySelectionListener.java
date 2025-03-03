@@ -16,6 +16,7 @@ public class OddEvenStrategySelectionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+
 		App.game.setStrategy(selectedOddEvenStrategy, App.game.getStrategy2());
 
 	}

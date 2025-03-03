@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
+import model.OddEvenStrategy;
+
 public class OddEvenAmountSelectionListener implements ActionListener {
 
     @Override

@@ -48,9 +48,7 @@ public class DiceRollGame {
 		} else {
 			oddEvenWinnings = -betOddEvenAmount;
 		}
-	} else {
-		System.out.println("No be on odd/even");
-	}
+	} 
 
 	if(rangeBetPlaced) {
 		if ((strategy2 == NumberRangeStrategy.onetotwo && key >= 1 && key <= 2) ||
@@ -60,8 +58,6 @@ public class DiceRollGame {
 		} else {
 			rangeWinnings = -betRangeAmount;
 		}
-	} else {
-		System.out.println("No bet on range");
 	}
 
 		balance += (oddEvenWinnings + rangeWinnings);

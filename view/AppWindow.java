@@ -167,8 +167,6 @@ public class AppWindow extends JFrame {
 				showKeyButton.setEnabled(false);
 				numberRangeBetAmount.setEnabled(false);
 				oddEvenBetAmount.setEnabled(false);
-				oddEvenBetAmount.setSelectedIndex(0);
-				numberRangeBetAmount.setSelectedIndex(0);
 				break;
 			case PLAYING:
 				newGameButton.setEnabled(false);

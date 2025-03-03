@@ -16,6 +16,7 @@ public class NumberRangeStrategySelectionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+
 		App.game.setStrategy(App.game.getStrategy1(), selectedRangeStrategy);
 
 	}
