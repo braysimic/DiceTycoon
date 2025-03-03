@@ -69,7 +69,7 @@ public class AppCanvas extends JPanel {
 
 	if(game.getOddEvenWinnings() != 0) {
 		if (game.getOddEvenWinnings() > 0) {
-			g2.setColor(Color.GREEN);
+			g2.setColor(Color.BLUE);
 			g2.drawString(String.format("Bet on odd/even won: +$%d", game.getOddEvenWinnings()), 50, 245);
 		} else {
 			g2.setColor(Color.RED);
@@ -82,7 +82,7 @@ public class AppCanvas extends JPanel {
 
 	if(game.getRangeWinnings() != 0) {
 		if (game.getRangeWinnings() > 0) {
-			g2.setColor(Color.GREEN);
+			g2.setColor(Color.BLUE);
 			g2.drawString(String.format("Bet on range won: +$%d", game.getRangeWinnings()), 50, 270);
 		} else {
 			g2.setColor(Color.RED);

@@ -140,6 +140,19 @@ public class AppWindow extends JFrame {
 
 	}
 
+	public void setDefaultSelections() {
+
+		oddButton.setSelected(true);
+		evenButton.setSelected(false);
+
+		oneToTwoButton.setSelected(true);
+		threeToFourButton.setSelected(false);
+		fiveToSixButton.setSelected(false);
+
+		oddEvenBetAmount.setSelectedIndex(0);
+		numberRangeBetAmount.setSelectedIndex(0);
+	}
+
 	public void updateWindow() {
 		switch (App.game.getState()) {
 			case INIT:

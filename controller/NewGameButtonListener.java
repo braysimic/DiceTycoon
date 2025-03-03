@@ -12,6 +12,7 @@ public class NewGameButtonListener implements ActionListener {
 
 		App.game.start();
 		App.game.setState(GameState.PLAYING);
+		App.win.setDefaultSelections();
 		App.win.updateWindow();
 	}
 
